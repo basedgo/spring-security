@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Protected</title>
+<style>
+  body { font-family: sans-serif; max-width: 360px; margin: 80px auto; }
+</style>
+</head>
+<body>
+
+<div id="content" hidden>
+  <h1>Welcome, <span id="username"></span></h1>
+  <button id="logout">Log out</button>
+</div>
+
+<script>
+  const token = localStorage.getItem('token');
+
+  function logout() {
+    localStorage.removeItem('token');
+    location.href = '/login.html';
+  }
+
+  async function loadUser() {
+    const res = await fetch('/api/users/me', {
+      headers: { Authorization: `Bearer ${token}` }
+    });
+
+    if (!res.ok) {
+      logout();
+      return;
+    }
+
+    const user = await res.json();
+    document.getElementById('username').textContent = user.username;
+    document.getElementById('content').hidden = false;
+  }
+
+  document.getElementById('logout').addEventListener('click', logout);
+
+  if (token) {
+    loadUser();
+  } else {
+    logout();
+  }
+</script>
+
+</body>
+</html>

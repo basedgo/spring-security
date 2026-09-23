@@ -1,5 +1,6 @@
 package com.example.springsecurity.controller;
 
+import com.example.springsecurity.dto.AuthResponse;
 import com.example.springsecurity.dto.LoginRequest;
 import com.example.springsecurity.dto.RegisterRequest;
 import com.example.springsecurity.dto.UserResponse;
@@ -15,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class AuthController {
 
     private final UserService userService;
-
+ 
     public AuthController(UserService userService) {
         this.userService = userService;
     }
@@ -26,7 +27,7 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<UserResponse> login(@RequestBody LoginRequest request) {
+    public ResponseEntity<AuthResponse> login(@RequestBody LoginRequest request) {
         return ResponseEntity.ok(userService.login(request.username(), request.password()));
     }
 }
