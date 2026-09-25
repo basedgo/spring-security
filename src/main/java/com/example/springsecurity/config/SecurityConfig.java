@@ -45,8 +45,9 @@ public class SecurityConfig {
         http
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
-                    .requestMatchers("/api/auth/**", "/test.html", "/login.html", "/protected.html").permitAll()
-                    .anyRequest().authenticated())
+                .requestMatchers("/", "/home.html", "/protected.html", 
+                                 "/app.js", "/apps.js", "/lib/**", "/favicon.ico", "/error").permitAll()
+                .anyRequest().authenticated())
                 .sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .oauth2ResourceServer(oauth2 -> oauth2.jwt(Customizer.withDefaults()));
 

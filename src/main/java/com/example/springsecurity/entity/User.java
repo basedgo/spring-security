@@ -15,18 +15,21 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "auth0_id", unique = true)
+    private String auth0Id;
+
     @Column(nullable = false, unique = true)
     private String username;
 
-    @Column(name = "hashed_password", nullable = false)
+    @Column(name = "hashed_password")
     private String hashedPassword;
 
     public User() {
     }
 
-    public User(String username, String hashedPassword) {
+    public User(String username, String auth0Id) {
         this.username = username;
-        this.hashedPassword = hashedPassword;
+        this.auth0Id = auth0Id;
     }
 
     public Long getId() {
@@ -52,4 +55,13 @@ public class User {
     public void setHashedPassword(String hashedPassword) {
         this.hashedPassword = hashedPassword;
     }
+
+    public String getAuth0Id() {
+        return auth0Id;
+    }
+
+    public void setAuth0Id(String auth0Id) {
+        this.auth0Id = auth0Id;
+    }
+
 }

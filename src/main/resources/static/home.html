@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Login</title>
+<style>
+  body { font-family: sans-serif; max-width: 360px; margin: 80px auto; }
+  label { display: block; margin-top: 10px; }
+  input { width: 100%; padding: 6px; box-sizing: border-box; }
+  button { margin-top: 14px; }
+  .error { color: #c00; }
+</style>
+</head>
+    <body>
+        <button id="login">Log in</button>
+        <button id="signup">Sign up</button>
+        <button id="logout" hidden>Log out</button>
+        <button id="call-api" hidden>Call /api/users/me</button>
+        <pre id="output"></pre>
+        <script type="module" src="apps.js"></script>
+    </body>
+</html>
